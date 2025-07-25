@@ -1,0 +1,725 @@
+/* FocusFlow Web App - 中文版 - Main Styles */
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #000000 0%, #1a1a2e 100%);
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* App Container */
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Language Switcher */
+.language-switcher {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+}
+
+.lang-btn {
+    background: rgba(128, 128, 128, 0.15);
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.3px;
+}
+
+.lang-btn.active {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.4);
+    color: rgba(59, 130, 246, 0.9);
+}
+
+.lang-btn:hover {
+    background: rgba(128, 128, 128, 0.25);
+}
+
+.lang-btn.active:hover {
+    background: rgba(59, 130, 246, 0.3);
+}
+
+/* View Management */
+.view {
+    display: none;
+    min-height: 100vh;
+    padding: 20px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.view.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header */
+.header {
+    text-align: center;
+    padding: 40px 0 20px;
+}
+
+.app-title {
+    font-size: 42px;
+    font-weight: bold;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.85) 0%, rgba(59, 130, 246, 0.7) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* Timer Container */
+.timer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    position: relative;
+}
+
+.progress-ring {
+    position: relative;
+    width: 320px;
+    height: 320px;
+}
+
+.progress-svg {
+    transform: rotate(-90deg);
+    filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.4));
+}
+
+.progress-bg {
+    fill: none;
+    stroke: rgba(128, 128, 128, 0.15);
+    stroke-width: 8;
+}
+
+.progress-fill {
+    fill: none;
+    stroke: rgba(59, 130, 246, 0.8);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 942.48;
+    stroke-dashoffset: 942.48;
+    transition: stroke-dashoffset 0.3s ease;
+}
+
+.progress-indicator {
+    fill: rgba(59, 130, 246, 0.9);
+    transition: all 0.3s ease;
+}
+
+.timer-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+}
+
+.time-display {
+    font-size: 72px;
+    font-weight: 300;
+    color: rgba(59, 130, 246, 0.9);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    margin-bottom: 12px;
+    transition: color 0.3s ease;
+}
+
+.time-label {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.breaks-taken {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 20px 0 50px;
+}
+
+.control-btn {
+    background: rgba(128, 128, 128, 0.15);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 20px;
+}
+
+.control-btn:hover {
+    background: rgba(128, 128, 128, 0.25);
+    transform: scale(1.05);
+}
+
+.control-btn.main-btn {
+    width: 68px;
+    height: 68px;
+    background: rgba(59, 130, 246, 0.8);
+    color: white;
+    font-size: 28px;
+}
+
+.control-btn.main-btn:hover {
+    background: rgba(59, 130, 246, 0.9);
+    transform: scale(1.05);
+}
+
+/* Session Info */
+.session-info {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.5px;
+    padding-bottom: 50px;
+}
+
+/* Modal Styles */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 20px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h2 {
+    font-size: 26px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 3px;
+}
+
+.modal-header p {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 1px;
+    margin-top: 8px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
+    font-weight: 300;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Statistics Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 40px 20px;
+}
+
+.stat-card {
+    background: rgba(128, 128, 128, 0.08);
+    border: 1px solid rgba(128, 128, 128, 0.15);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.stat-icon {
+    font-size: 22px;
+    margin-bottom: 12px;
+    opacity: 0.8;
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 8px;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+.stat-sublabel {
+    font-size: 10px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.3px;
+}
+
+/* Statistics Details */
+.stats-details {
+    padding: 0 20px 20px;
+}
+
+.detail-card {
+    background: rgba(128, 128, 128, 0.08);
+    border: 1px solid rgba(128, 128, 128, 0.15);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.detail-icon {
+    font-size: 18px;
+    width: 22px;
+    opacity: 0.8;
+}
+
+.detail-content {
+    flex: 1;
+}
+
+.detail-title {
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.3px;
+    margin-bottom: 4px;
+}
+
+.detail-value {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.2px;
+}
+
+/* Reset Button */
+.reset-btn {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 300;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 20px 40px;
+    transition: all 0.2s ease;
+    letter-spacing: 0.5px;
+}
+
+.reset-btn:hover {
+    background: rgba(239, 68, 68, 0.3);
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+/* Settings Content */
+.settings-content {
+    padding: 20px;
+}
+
+.setting-section {
+    margin-bottom: 40px;
+}
+
+.setting-section h3 {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.setting-item {
+    margin-bottom: 24px;
+}
+
+.setting-item label {
+    display: block;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
+}
+
+/* Range Sliders */
+input[type="range"] {
+    width: 100%;
+    height: 6px;
+    background: rgba(128, 128, 128, 0.2);
+    border-radius: 3px;
+    outline: none;
+    -webkit-appearance: none;
+    margin-bottom: 8px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(59, 130, 246, 0.8);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background: rgba(59, 130, 246, 0.9);
+    transform: scale(1.1);
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: rgba(59, 130, 246, 0.8);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+    background: rgba(59, 130, 246, 0.9);
+    transform: scale(1.1);
+}
+
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.2px;
+}
+
+/* Toggle Buttons */
+.toggle-group {
+    display: flex;
+    gap: 8px;
+}
+
+.toggle-btn {
+    background: rgba(128, 128, 128, 0.15);
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.3px;
+}
+
+.toggle-btn.active {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.4);
+    color: rgba(59, 130, 246, 0.9);
+}
+
+.toggle-btn:hover {
+    background: rgba(128, 128, 128, 0.25);
+}
+
+.toggle-btn.active:hover {
+    background: rgba(59, 130, 246, 0.3);
+}
+
+/* Statistics in Settings */
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.stat-row:last-child {
+    border-bottom: none;
+}
+
+.stat-row span:first-child {
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.3px;
+}
+
+.stat-row span:last-child {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .app-title {
+        font-size: 36px;
+    }
+    
+    .subtitle {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+    
+    .progress-ring {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .progress-svg {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .progress-bg,
+    .progress-fill {
+        stroke-width: 6;
+    }
+    
+    .time-display {
+        font-size: 60px;
+    }
+    
+    .time-label {
+        font-size: 14px;
+    }
+    
+    .controls {
+        gap: 30px;
+    }
+    
+    .control-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+    
+    .control-btn.main-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 30px 20px;
+    }
+    
+    .stat-card {
+        height: 100px;
+        padding: 16px;
+    }
+    
+    .stat-icon {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .stat-value {
+        font-size: 22px;
+        margin-bottom: 6px;
+    }
+    
+    .modal-header {
+        padding: 20px 20px 15px;
+    }
+    
+    .modal-header h2 {
+        font-size: 22px;
+        letter-spacing: 2px;
+    }
+    
+    .modal-header p {
+        font-size: 12px;
+    }
+    
+    .settings-content {
+        padding: 15px;
+    }
+    
+    .setting-section {
+        margin-bottom: 30px;
+    }
+    
+    .setting-section h3 {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-title {
+        font-size: 32px;
+    }
+    
+    .progress-ring {
+        width: 240px;
+        height: 240px;
+    }
+    
+    .progress-svg {
+        width: 240px;
+        height: 240px;
+    }
+    
+    .time-display {
+        font-size: 48px;
+    }
+    
+    .controls {
+        gap: 20px;
+    }
+    
+    .control-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .control-btn.main-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+    }
+    
+    .stats-grid {
+        padding: 20px 15px;
+    }
+    
+    .detail-card {
+        padding: 12px;
+        gap: 12px;
+    }
+    
+    .detail-icon {
+        font-size: 16px;
+        width: 20px;
+    }
+    
+    .detail-title {
+        font-size: 11px;
+    }
+    
+    .detail-value {
+        font-size: 13px;
+    }
+}
+
+/* Pulse Animation for Progress Ring */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+.progress-ring {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Smooth Transitions */
+* {
+    transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Focus States for Accessibility */
+button:focus,
+input:focus {
+    outline: 2px solid rgba(59, 130, 246, 0.5);
+    outline-offset: 2px;
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(128, 128, 128, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(128, 128, 128, 0.3);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(128, 128, 128, 0.5);
+} 

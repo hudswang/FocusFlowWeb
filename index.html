@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusFlow - Deep Focus Timer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Language Switcher -->
+        <div class="language-switcher">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="zh">中文</button>
+        </div>
+
+        <!-- Main Timer View -->
+        <div id="timerView" class="view active">
+            <div class="header">
+                <h1 class="app-title">FocusFlow</h1>
+                <p class="subtitle" data-en="DEEP FOCUS TIMER" data-zh="深度专注计时器">DEEP FOCUS TIMER</p>
+            </div>
+
+            <div class="timer-container">
+                <div class="progress-ring">
+                    <svg class="progress-svg" width="320" height="320">
+                        <circle class="progress-bg" cx="160" cy="160" r="150" stroke-width="8"></circle>
+                        <circle class="progress-fill" cx="160" cy="160" r="150" stroke-width="8"></circle>
+                        <!-- Progress indicator removed -->
+                    </svg>
+                    <div class="timer-content">
+                        <div class="time-display" id="timeDisplay">90:00</div>
+                        <div class="time-label" data-en="FOCUS TIME" data-zh="专注时间">FOCUS TIME</div>
+                        <div class="breaks-taken">
+                            <span data-en="Breaks taken: " data-zh="休息次数: ">Breaks taken: </span>
+                            <span id="breaksTaken">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button class="control-btn" id="statsBtn" title="Statistics" data-en-title="Statistics" data-zh-title="统计">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 3v18h18V3H3zm16 16H5V5h14v14zM7 7h2v10H7V7zm4 4h2v6h-2v-6zm4 2h2v4h-2v-4z"/>
+                    </svg>
+                </button>
+                <button class="control-btn main-btn" id="playPauseBtn" title="Start/Pause" data-en-title="Start/Pause" data-zh-title="开始/暂停">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" id="playIcon">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" id="pauseIcon" style="display: none;">
+                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                    </svg>
+                </button>
+                <button class="control-btn" id="resetBtn" title="Reset" data-en-title="Reset" data-zh-title="重置">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+                    </svg>
+                </button>
+                <button class="control-btn" id="settingsBtn" title="Settings" data-en-title="Settings" data-zh-title="设置">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Statistics View -->
+        <div id="statsView" class="view">
+            <div class="modal-header">
+                <h2 data-en="STATISTICS" data-zh="统计">STATISTICS</h2>
+                <p data-en="Your Focus Journey" data-zh="你的专注之旅">Your Focus Journey</p>
+                <button class="close-btn" id="closeStatsBtn" data-en="Done" data-zh="完成">Done</button>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: #4ade80;">✓</div>
+                    <div class="stat-value" id="completedSessions">0</div>
+                    <div class="stat-label" data-en="Sessions" data-zh="会话">Sessions</div>
+                    <div class="stat-sublabel" data-en="Completed" data-zh="已完成">Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: #fb923c;">🔥</div>
+                    <div class="stat-value" id="currentStreak">0</div>
+                    <div class="stat-label" data-en="Streak" data-zh="连续">Streak</div>
+                    <div class="stat-sublabel" data-en="Days" data-zh="天数">Days</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: #3b82f6;">⏰</div>
+                    <div class="stat-value" id="totalFocusTime" data-en="0m" data-zh="0分钟">0m</div>
+                    <div class="stat-label" data-en="Focus Time" data-zh="专注时间">Focus Time</div>
+                    <div class="stat-sublabel" data-en="Total" data-zh="总计">Total</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: #a855f7;">📈</div>
+                    <div class="stat-value" id="averageTime" data-en="0m" data-zh="0分钟">0m</div>
+                    <div class="stat-label" data-en="Average" data-zh="平均">Average</div>
+                    <div class="stat-sublabel" data-en="Per Session" data-zh="每次会话">Per Session</div>
+                </div>
+            </div>
+
+            <div class="stats-details">
+                <div class="detail-card">
+                    <div class="detail-icon" style="color: #3b82f6;">📅</div>
+                    <div class="detail-content">
+                        <div class="detail-title" data-en="Last Session" data-zh="上次会话">Last Session</div>
+                        <div class="detail-value" id="lastSessionDate" data-en="Never" data-zh="从未">Never</div>
+                    </div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-icon" style="color: #4ade80;">⏱️</div>
+                    <div class="detail-content">
+                        <div class="detail-title" data-en="Session Duration" data-zh="会话时长">Session Duration</div>
+                        <div class="detail-value" id="currentSessionDuration" data-en="90 minutes" data-zh="90分钟">90 minutes</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="reset-btn" id="resetStatsBtn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+                </svg>
+                <span data-en="Reset Statistics" data-zh="重置统计">Reset Statistics</span>
+            </button>
+        </div>
+
+        <!-- Settings View -->
+        <div id="settingsView" class="view">
+            <div class="modal-header">
+                <h2 data-en="Settings" data-zh="设置">Settings</h2>
+                <button class="close-btn" id="closeSettingsBtn" data-en="Done" data-zh="完成">Done</button>
+            </div>
+
+            <div class="settings-content">
+                <div class="setting-section">
+                    <h3 data-en="Session Duration" data-zh="会话时长">Session Duration</h3>
+                    <div class="setting-item">
+                        <label>
+                            <span data-en="Duration: " data-zh="时长: ">Duration: </span>
+                            <span id="durationValue">90</span>
+                            <span data-en=" minutes" data-zh=" 分钟"> minutes</span>
+                        </label>
+                        <input type="range" id="sessionDurationSlider" min="15" max="180" step="15" value="90">
+                        <div class="range-labels">
+                            <span data-en="15 min" data-zh="15分钟">15 min</span>
+                            <span data-en="180 min" data-zh="180分钟">180 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setting-section">
+                    <h3 data-en="Micro Break Settings" data-zh="微休息设置">Micro Break Settings</h3>
+                    <div class="setting-item">
+                        <label data-en="Interval Type" data-zh="间隔类型">Interval Type</label>
+                        <div class="toggle-group">
+                            <button class="toggle-btn active" data-value="fixed" data-en="Fixed" data-zh="固定">Fixed</button>
+                            <button class="toggle-btn" data-value="random" data-en="Random" data-zh="随机">Random</button>
+                        </div>
+                    </div>
+                    <div class="setting-item" id="intervalSettings">
+                        <label>
+                            <span data-en="Interval: " data-zh="间隔: ">Interval: </span>
+                            <span id="intervalValue">5</span>
+                            <span data-en=" minutes" data-zh=" 分钟"> minutes</span>
+                        </label>
+                        <input type="range" id="intervalSlider" min="1" max="10" step="1" value="5">
+                        <div class="range-labels">
+                            <span data-en="1 min" data-zh="1分钟">1 min</span>
+                            <span data-en="10 min" data-zh="10分钟">10 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setting-section">
+                    <h3 data-en="Statistics" data-zh="统计">Statistics</h3>
+                    <div class="stat-row">
+                        <span data-en="Completed Sessions" data-zh="已完成会话">Completed Sessions</span>
+                        <span id="settingsCompletedSessions">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span data-en="Current Streak" data-zh="当前连续">Current Streak</span>
+                        <span id="settingsCurrentStreak" data-en="0 days" data-zh="0天">0 days</span>
+                    </div>
+                    <div class="stat-row">
+                        <span data-en="Total Focus Time" data-zh="总专注时间">Total Focus Time</span>
+                        <span id="settingsTotalTime" data-en="0m" data-zh="0分钟">0m</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
