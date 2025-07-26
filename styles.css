@@ -21,6 +21,7 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
+    overflow-x: hidden;
 }
 
 /* Language Switcher */
@@ -81,6 +82,7 @@ body {
 .header {
     text-align: center;
     padding: 40px 0 20px;
+    flex-shrink: 0;
 }
 
 .app-title {
@@ -524,6 +526,14 @@ input[type="range"]::-moz-range-thumb:hover {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .app-container {
+        padding: 0;
+    }
+    
+    .view {
+        padding: 10px;
+    }
+    
     .language-switcher {
         top: 15px;
         right: 15px;
@@ -536,7 +546,7 @@ input[type="range"]::-moz-range-thumb:hover {
     }
     
     .header {
-        padding: 60px 0 30px;
+        padding: 60px 0 20px;
     }
     
     .app-title {
@@ -546,6 +556,14 @@ input[type="range"]::-moz-range-thumb:hover {
     .subtitle {
         font-size: 12px;
         letter-spacing: 2px;
+    }
+    
+    .timer-container {
+        padding: 20px 0;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .progress-ring {
@@ -573,7 +591,8 @@ input[type="range"]::-moz-range-thumb:hover {
     
     .controls {
         gap: 30px;
-        margin-top: 40px;
+        padding: 20px 0 30px;
+        flex-shrink: 0;
     }
     
     .control-btn {
@@ -637,6 +656,10 @@ input[type="range"]::-moz-range-thumb:hover {
 }
 
 @media (max-width: 480px) {
+    .view {
+        padding: 5px;
+    }
+    
     .language-switcher {
         top: 10px;
         right: 10px;
@@ -649,7 +672,7 @@ input[type="range"]::-moz-range-thumb:hover {
     }
     
     .header {
-        padding: 50px 0 20px;
+        padding: 50px 0 15px;
     }
     
     .app-title {
@@ -659,6 +682,10 @@ input[type="range"]::-moz-range-thumb:hover {
     .subtitle {
         font-size: 11px;
         letter-spacing: 1.5px;
+    }
+    
+    .timer-container {
+        padding: 15px 0;
     }
     
     .progress-ring {
@@ -685,7 +712,7 @@ input[type="range"]::-moz-range-thumb:hover {
     
     .controls {
         gap: 20px;
-        margin-top: 30px;
+        padding: 15px 0 25px;
     }
     
     .control-btn {
