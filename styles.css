@@ -13,6 +13,7 @@ body {
     color: white;
     min-height: 100vh;
     overflow-x: hidden;
+    position: relative;
 }
 
 /* App Container */
@@ -111,17 +112,21 @@ body {
     align-items: center;
     padding: 40px 0;
     position: relative;
+    z-index: 10;
 }
 
 .progress-ring {
     position: relative;
     width: 320px;
     height: 320px;
+    z-index: 20;
 }
 
 .progress-svg {
     transform: rotate(-90deg);
     filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.4));
+    position: relative;
+    z-index: 25;
 }
 
 .progress-bg {
@@ -152,6 +157,7 @@ body {
     transform: translate(-50%, -50%);
     text-align: center;
     width: 100%;
+    z-index: 30;
 }
 
 .time-display {
@@ -564,16 +570,19 @@ input[type="range"]::-moz-range-thumb:hover {
         display: flex;
         align-items: center;
         justify-content: center;
+        z-index: 10;
     }
     
     .progress-ring {
         width: 280px;
         height: 280px;
+        z-index: 20;
     }
     
     .progress-svg {
         width: 280px;
         height: 280px;
+        z-index: 25;
     }
     
     .progress-bg,
@@ -686,16 +695,19 @@ input[type="range"]::-moz-range-thumb:hover {
     
     .timer-container {
         padding: 15px 0;
+        z-index: 10;
     }
     
     .progress-ring {
         width: 240px;
         height: 240px;
+        z-index: 20;
     }
     
     .progress-svg {
         width: 240px;
         height: 240px;
+        z-index: 25;
     }
     
     .time-display {
