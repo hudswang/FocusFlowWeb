@@ -176,10 +176,6 @@ A minimalist web application designed to enhance study efficiency and focus thro
 - 保持JavaScript代码简洁
 - 添加必要的注释
 
-## 📄 许可证
-
-本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
-
 ## 🙏 致谢
 
 感谢所有为专注力和生产力工具做出贡献的开发者们！
